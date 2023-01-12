@@ -4,7 +4,7 @@ import { View ,Text, SafeAreaView} from 'react-native';
 import HomeScreen from './src/HomeScreen';
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'https://countries.trevorblades.com/graphql',
+  uri: 'http://192.168.5.95:8000/graphql',
   cache: new InMemoryCache()
 });
 
