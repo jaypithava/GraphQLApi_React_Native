@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import React from 'react';
+import { View ,Text, SafeAreaView} from 'react-native';
+import HomeScreen from './src/HomeScreen';
+// Initialize Apollo Client
+const client = new ApolloClient({
+  uri: 'https://countries.trevorblades.com/graphql',
+  cache: new InMemoryCache()
+});
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <SafeAreaView>
+    <ApolloProvider client={client}>
+    <View style={{justifyContent:'center', marginTop:30}}>
+      <Text style={{fontSize:30, fontWeight:'bold',textAlign:'center'}}>Country Name</Text>
+      <HomeScreen />
     </View>
+    </ApolloProvider>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
